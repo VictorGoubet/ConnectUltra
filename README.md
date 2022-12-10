@@ -57,19 +57,19 @@ This strategy is great, and have wonderful results for simple games. However, it
 
 We choose to implement the following heuristic:
 
-<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}score&space;=&space;score&space;=&space;\sum_{\forall&space;a&space;\epsilon&space;actions(s)}^{}&space;(CA&space;*&space;fitness(a)&space;-&space;CD&space;*&space;opponent\_fitness(a))"/> 
+<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}&space;Utility&space;=&space;\sum_{\forall&space;a&space;\epsilon&space;actions(s)}^{}&space;(ca&space;*&space;fitness(a)&space;-&space;cd&space;*&space;opponent\_fitness(a))"/> 
 
 The score of a board state is the sum of the payoff of each actions minus the opponent payoff for each of these actions. Moreover an attack and defense coefficient is added to push to take risky decision or to play for equality. 
 
 Now we can analyse how do we compute the payoff of an action.
 
-<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}score&space;=&space;Fitness&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;[R,&space;C,&space;D1,&space;D2]}^{}&space;(eval\_crd(x,&space;[player1,&space;player2]))"></img>
+<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}&space;Fitness&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;[R,&space;C,&space;D1,&space;D2]}^{}&space;(eval\_crd(x,&space;[player1,&space;player2]))"></img>
 
 Here we compute the score of the action according to its relevancy on the current row, column and on the two diagonals. This score is computed using a simple rule:
 
 *For each 4-subsets of the row/column/diagonal we count how many of the player's coins are in the row and we set the fitness as a polynamial function of this count*
 
-<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}score&space;=&space;Fitness\_crd(player,&space;crd)&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;4\_subsets}^{}(3^{\sum_{\forall&space;&space;c&space;\epsilon&space;crd}^{}([1\;if\;c\;\epsilon\;player\;else\;0])})"></img>
+<img src="https://latex.codecogs.com/png.image?\inline&space;\small&space;\dpi{300}\bg{white}&space;Fitness\_crd(player,&space;crd)&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;4\_subsets}^{}(3^{\sum_{\forall&space;&space;c&space;\epsilon&space;crd}^{}([1\;if\;c\;\epsilon\;player\;else\;0])})"></img>
 
 
 Were are good with the explanations! Let's move to the tests.
