@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/VictorGoubet/ConnectUltra">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq4fznCFt-0SH25M9VBnb9DF_RXRG4y9aX0_J5tcX4d4xFsGQvmEEBrVw1zEPNw5AxyVg&usqp=CAU" alt="Logo" width="80" height="80">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Puissance4_01.svg/800px-Puissance4_01.svg.png" alt="Logo" width="90" height="80">
   </a>
 
   <h3 align="center">Connect Ultra</h3>
@@ -29,9 +29,9 @@
 ## About The Project
 </br>
 
-[![Product Name Screen Shot][product-screenshot]](screenshot.PNG)
-
 The connect 4 is a simple game where you have to align four of your coins on a same row, column or diagonal. Usually, this game is played on a 7x6 grid. However, in this imlementation we complicated things by playing on a 12x6 grid.
+
+[![Product Name Screen Shot][product-screenshot]](screenshot.PNG)
 
 Could an AI beats us at this simple game? Let's see.
 
@@ -44,7 +44,7 @@ Could an AI beats us at this simple game? Let's see.
 
 The AI implementation use a simple and well known algorithm called minmax. This algorithm comes from the Game Theory and can be explained easly. Let's first concider the connect4 game. It's a sequential game, where all players know all the information of the game (eg position of all the coins). This game is not a cooperation game but a null zero sum game where each player action aims to increase its payoff and decrease the opponent's one. Therefore, the players actions tend to follow the MinMax von Neuman theorem where the game can be modelized in a normal shape and each action can be predicted using a backpropagation of the potential payoffs. Let's analyze the following example:
 
-[![Product Name Screen Shot][product-screenshot]](minmax.PNG)
+[![MinMax Screen Shot][minmax-screenshot]](minmax.PNG)
 
 
 Here we see that the player 0 (max) can predict the payoff brought by each action by simulating for each of theses action the next most probable action of the player1.
@@ -57,19 +57,19 @@ This strategy is great, and have wonderful results for simple games. However, it
 
 We choose to implement the following heuristic:
 
-<img src="https://latex.codecogs.com/svg.image?score&space;=&space;\sum_{\forall&space;a&space;\epsilon&space;actions(s)}^{}&space;(CA&space;*&space;fitness(a)&space;-&space;CD&space;*&space;opponent\_fitness(a))"> </img>
+<img src="https://latex.codecogs.com/svg.image?\bg{white}score&space;=&space;\sum_{\forall&space;a&space;\epsilon&space;actions(s)}^{}&space;(CA&space;*&space;fitness(a)&space;-&space;CD&space;*&space;opponent\_fitness(a))"/> 
 
 The score of a board state is the sum of the payoff of each actions minus the opponent payoff for each of these actions. Moreover an attack and defense coefficient is added to push to take risky decision or to play for equality. 
 
 Now we can analyse how do we compute the payoff of an action.
 
-<img src="https://latex.codecogs.com/svg.image?Fitness&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;[R,&space;C,&space;D1,&space;D2]}^{}&space;(eval\_crd(x,&space;[player1,&space;player2]))"></img>
+<img src="https://latex.codecogs.com/svg.image?\bg{white}Fitness&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;[R,&space;C,&space;D1,&space;D2]}^{}&space;(eval\_crd(x,&space;[player1,&space;player2]))"></img>
 
 Here we compute the score of the action according to its relevancy on the current row, column and on the two diagonals. This score is computed using a simple rule:
 
 *For each 4-subsets of the row/column/diagonal we count how many of the player's coins are in the row and we set the fitness as a polynamial function of this count*
 
-<img src="https://latex.codecogs.com/svg.image?Fitness\_crd(player,&space;crd)&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;4\_subsets}^{}(3^{\sum_{\forall&space;&space;c&space;\epsilon&space;crd}^{}([1\;if\;c\;\epsilon\;player\;else\;0])})"></img>
+<img src="https://latex.codecogs.com/svg.image?\bg{white}Fitness\_crd(player,&space;crd)&space;=&space;\sum_{\forall&space;&space;x&space;\epsilon&space;4\_subsets}^{}(3^{\sum_{\forall&space;&space;c&space;\epsilon&space;crd}^{}([1\;if\;c\;\epsilon\;player\;else\;0])})"></img>
 
 
 Were are good with the explanations! Let's move to the tests.
@@ -103,7 +103,7 @@ You can follow the different steps inorder to get the programm working on your c
    ```
 3. Execute the python script
    ```sh
-   python GameOfLife.py
+   python ConnectUltra.py
    ```
 
 The windows should appear! The interface is pretty intuitive, have fun!
@@ -133,3 +133,4 @@ Victor Goubet - victorgoubet@orange.fr
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/victorgoubet/
 [product-screenshot]: screenshot.PNG
+[minmax-screenshot]: minmax.PNG
